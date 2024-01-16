@@ -7,10 +7,14 @@ import { Heading } from "components/Heading";
 import { Paragraph } from "components/Paragraph";
 import { PropertySearch } from "components/PropertySearch";
 import { theme } from "theme";
+import { FormspreeForm } from "components/FormspreeForm";
 
 export const BlockRenderer = ({ blocks }) => {
   return blocks.map((block) => {
     switch (block.name) {
+      case "acf/formspreeform": {
+        return <FormspreeForm key={block.id} formId={block.attributes.data.form_id} />
+      }
       case "core/columns": {
         return (
           <Columns
