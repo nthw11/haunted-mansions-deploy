@@ -71,6 +71,7 @@ export const BlockRenderer = ({ blocks }) => {
           />
         );
       }
+      case "core/post-title":
       case "core/heading": {
         return (
           <Heading
@@ -89,7 +90,7 @@ export const BlockRenderer = ({ blocks }) => {
         );
       }
       default:
-        console.log("unknown block: ", block);
+        // console.log("unknown block: ", block);
         return null;
     }
   });
