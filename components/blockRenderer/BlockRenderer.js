@@ -5,6 +5,7 @@ import { Columns } from "components/Columns";
 import { Cover } from "components/Cover";
 import { Heading } from "components/Heading";
 import { Paragraph } from "components/Paragraph";
+import { PropertySearch } from "components/PropertySearch";
 import { theme } from "theme";
 
 export const BlockRenderer = ({ blocks }) => {
@@ -71,6 +72,7 @@ export const BlockRenderer = ({ blocks }) => {
           />
         );
       }
+      case "core/post-title":
       case "core/heading": {
         return (
           <Heading
@@ -80,6 +82,9 @@ export const BlockRenderer = ({ blocks }) => {
             content={block.attributes.content}
           />
         );
+      }
+      case "acf/propertysearch":{
+        return <PropertySearch key={block.id} />
       }
       case "core/cover": {
         return (
