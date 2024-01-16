@@ -6,7 +6,7 @@ config.autoAddCss = false;
 function MyApp({ Component, pageProps }) {
   return (
     <div className="font-body">
-      <Component {...pageProps} />;
+      <Component {...pageProps} />
     </div>
   );
 }

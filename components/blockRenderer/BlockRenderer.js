@@ -5,6 +5,7 @@ import { Columns } from "components/Columns";
 import { Cover } from "components/Cover";
 import { Heading } from "components/Heading";
 import { Paragraph } from "components/Paragraph";
+import { PropertySearch } from "components/PropertySearch";
 import { theme } from "theme";
 
 export const BlockRenderer = ({ blocks }) => {
@@ -82,6 +83,9 @@ export const BlockRenderer = ({ blocks }) => {
           />
         );
       }
+      case "acf/propertysearch":{
+        return <PropertySearch key={block.id} />
+      }
       case "core/cover": {
         return (
           <Cover key={block.id} background={block.attributes.url}>
@@ -90,7 +94,7 @@ export const BlockRenderer = ({ blocks }) => {
         );
       }
       default:
-        // console.log("unknown block: ", block);
+        console.log("unknown block: ", block);
         return null;
     }
   });
