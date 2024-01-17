@@ -7,10 +7,32 @@ import { Heading } from "components/Heading";
 import { Paragraph } from "components/Paragraph";
 import { PropertySearch } from "components/PropertySearch";
 import { theme } from "theme";
+import { FormspreeForm } from "components/FormspreeForm";
+import { PropertyFeatures } from "components/PropertyFeatures";
 
 export const BlockRenderer = ({ blocks }) => {
   return blocks.map((block) => {
     switch (block.name) {
+      case "acf/propertyfeatures": {
+        return (
+          <PropertyFeatures
+            key={block.id}
+            price={block.attributes.price}
+            bedrooms={block.attributes.bedrooms}
+            bathrooms={block.attributes.bathrooms}
+            hasParking={block.attributes.has_parking}
+            petFriendly={block.attributes.pet_friendly}
+          />
+        );
+      }
+      case "acf/formspreeform": {
+        return (
+          <FormspreeForm
+            key={block.id}
+            formId={block.attributes.data.form_id}
+          />
+        );
+      }
       case "core/columns": {
         return (
           <Columns
@@ -33,8 +55,8 @@ export const BlockRenderer = ({ blocks }) => {
         );
       }
       case "core/block":
-      case "core/group":{
-        return <BlockRenderer key={block.id} blocks={block.innerBlocks} />
+      case "core/group": {
+        return <BlockRenderer key={block.id} blocks={block.innerBlocks} />;
       }
       case "core/image": {
         return (
@@ -46,7 +68,7 @@ export const BlockRenderer = ({ blocks }) => {
             alt={block.attributes.alt || ""}
             aspectRatio={block.attributes.aspectRatio}
             scale={block.attributes.scale}
-            />
+          />
         );
       }
       case "acf/ctabutton": {
@@ -83,8 +105,8 @@ export const BlockRenderer = ({ blocks }) => {
           />
         );
       }
-      case "acf/propertysearch":{
-        return <PropertySearch key={block.id} />
+      case "acf/propertysearch": {
+        return <PropertySearch key={block.id} />;
       }
       case "core/cover": {
         return (
