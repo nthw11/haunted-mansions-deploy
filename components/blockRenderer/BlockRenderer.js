@@ -9,10 +9,29 @@ import { PropertySearch } from "components/PropertySearch";
 import { theme } from "theme";
 import { FormspreeForm } from "components/FormspreeForm";
 import { PropertyFeatures } from "components/PropertyFeatures";
+import { Gallery } from "components/Gallery";
+import { TickItem } from "components/TickItem";
 
 export const BlockRenderer = ({ blocks }) => {
   return blocks.map((block) => {
     switch (block.name) {
+      case "acf/tickitem": {
+        return (
+          <TickItem key={block.id}>
+            <BlockRenderer blocks={block.innerBlocks} />
+          </TickItem>
+        );
+      }
+      case "core/gallery": {
+        return (
+          <Gallery
+            key={block.id}
+            columns={block.attributes.columns || 3}
+            cropImages={block.attributes.imageCrop}
+            items={block.innerBlocks}
+          />
+        );
+      }
       case "acf/propertyfeatures": {
         return (
           <PropertyFeatures
@@ -39,6 +58,14 @@ export const BlockRenderer = ({ blocks }) => {
             key={block.id}
             columns={block.innerBlocks}
             isStackedOnMobile={block.attributes.isStackedOnMobile}
+            textColor={
+              theme[block.attributes.textColor] ||
+              block.attributes.style?.color?.text
+            }
+            backgroundColor={
+              theme[block.attributes.backgroundColor] ||
+              block.attributes.style?.color?.background
+            }
           >
             <BlockRenderer blocks={block.innerBlocks} />
           </Columns>
@@ -46,7 +73,17 @@ export const BlockRenderer = ({ blocks }) => {
       }
       case "core/column": {
         return (
-          <Column key={block.id}>
+          <Column
+            key={block.id}
+            textColor={
+              theme[block.attributes.textColor] ||
+              block.attributes.style?.color?.text
+            }
+            backgroundColor={
+              theme[block.attributes.backgroundColor] ||
+              block.attributes.style?.color?.background
+            }
+          >
             <BlockRenderer
               blocks={block.innerBlocks}
               width={block.attributes.width}
