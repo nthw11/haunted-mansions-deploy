@@ -24,13 +24,13 @@ export const PropertyCard = ({
       href={destination}
       className="border-2 border-slate-300 p-5 bg-slate-100 hover:bg-slate-200"
     >
-      <div className="flex w-full">
+      <div className="flex w-full relative h-[200px]">
         <Image
           src={image}
           alt={title}
-          width={300}
-          height={250}
-          className="mb-3 object-cover"
+          fill
+          sizes="300px"
+          className="object-cover"
         />
       </div>
       <div className="mt-3 text-large font-bold">{title}</div>
