@@ -41,9 +41,3 @@ export const FormspreeForm = ({formId}) => {
     </form>
   );
 }
-function App() {
-  return (
-    <ContactForm />
-  );
-  
-}
